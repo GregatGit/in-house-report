@@ -1,0 +1,77 @@
+[
+  {
+    "name": "G-Man",
+    "online": true,
+    "skills": ["JS", "CSS", "Vue"],
+    "avatar": "url",
+    "email": "test@test.com"
+  },
+  {
+    "name": "L-Crew",
+    "online": true,
+    "skills": ["JS", "DB", "SOE", "BackEnd"],
+    "avatar": "url",
+    "email": "str"
+  },
+  {
+    "name": "Cut-P",
+    "online": false,
+    "skills": ["CSS", "Vue", "Responsive", "Design", "PS"],
+    "avatar": "url",
+    "email": "str"
+  },
+  {
+    "name": "Operator",
+    "online": true,
+    "skills": [
+      "JS",
+      "CSS",
+      "DB",
+      "Vue",
+      "Responsive",
+      "Design",
+      "PS",
+      "SOE",
+      "BackEnd"
+    ],
+    "avatar": "url",
+    "email": "str"
+  },
+  {
+    "name": "Nose-Up",
+    "online": false,
+    "skills": ["JS", "CSS", "Vue", "Responsive", "Design"],
+    "avatar": "url",
+    "email": "str"
+  },
+  {
+    "name": "Go-Yeah",
+    "online": true,
+    "skills": ["JS", "CSS", "Vue"],
+    "avatar": "url",
+    "email": "str"
+  },
+  {
+    "name": "Kick-Start",
+    "online": true,
+    "skills": ["JS", "DB", "Design", "SOE", "BackEnd"],
+    "avatar": "url",
+    "email": "str"
+  },
+  {
+    "name": "Rain-Maker",
+    "online": true,
+    "skills": [
+      "JS",
+      "CSS",
+      "DB",
+      "Vue",
+      "Responsive",
+      "Design",
+      "SOE",
+      "BackEnd"
+    ],
+    "avatar": "url",
+    "email": "str"
+  }
+]

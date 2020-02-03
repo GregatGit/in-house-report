@@ -1,0 +1,52 @@
+[
+  {
+    "by": "G-Man",
+    "title": "Divs allignment",
+    "description": "Divs do not align on home page",
+    "skills": ["CSS", "Vue", "Responsive"],
+    "difficulty": 2,
+    "time": { "hours": 14, "minutes": 17, "date": "Mon Jan 20 2020" },
+    "fixed": false,
+    "emergency": false
+  },
+  {
+    "by": "L-Man",
+    "title": "Wrong Component",
+    "description": "The list of projects renders instead of the login when you first load page",
+    "skills": ["Vue", "JS"],
+    "difficulty": 2,
+    "time": { "hours": 14, "minutes": 18, "date": "Mon Jan 20 2020" },
+    "fixed": false,
+    "emergency": false
+  },
+  {
+    "by": "Go-Yeah",
+    "title": "Logo looks wrong",
+    "description": "The new logo clashes with the other colors. It works but doesn't look right.",
+    "skills": ["Design", "CSS"],
+    "difficulty": 3,
+    "time": { "hours": 14, "minutes": 19, "date": "Mon Jan 20 2020" },
+    "fixed": false,
+    "emergency": false
+  },
+  {
+    "by": "Kick-Start",
+    "title": "Can't Mark jobs as 'Done'",
+    "description": "Can't mark off Jobs as complete in the DB. I can add comments to the job.",
+    "skills": ["BackEnd", "DB", "JS"],
+    "difficulty": 3,
+    "time": { "hours": 14, "minutes": 21, "date": "Mon Jan 20 2020" },
+    "fixed": false,
+    "emergency": false
+  },
+  {
+    "by": "G-Man",
+    "title": "No Auth being given",
+    "description": "New users aren't being given proper Authorization",
+    "skills": ["JS", "DB", "SOE"],
+    "difficulty": 4,
+    "time": { "hours": 14, "minutes": 22, "date": "Mon Jan 20 2020" },
+    "fixed": false,
+    "emergency": false
+  }
+]
