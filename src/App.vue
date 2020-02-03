@@ -1,16 +1,15 @@
 <template>
   <div id="app">
-    <router-view/>
+    <router-view />
   </div>
 </template>
 <script>
-
 export default {
   name: 'app',
-  components: {
-  }
+  components: {},
 }
 </script>
 <style lang="scss">
-@import "node_modules/bootstrap/scss/bootstrap"
+$primary: #05b2dd;
+@import 'node_modules/bootstrap/scss/bootstrap';
 </style>
