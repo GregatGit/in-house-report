@@ -1,7 +1,17 @@
 <template>
   <div>
     <Navigation :user="user" />
-    <h1>Welcome <font-awesome-icon icon="star"></font-awesome-icon></h1>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-2">
+          <OnlineUsers :users="users" />
+        </div>
+        <div class="col-7"></div>
+        <div class="col-3">
+          <WhatsOn />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -11,7 +21,9 @@ import Firebase from 'firebase'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 import db from '../db'
-import Navigation from '../components/Navigation'
+import Navigation from  '../components/Navigation'
+import OnlineUsers from '../components/OnlineUsers'
+import WhatsOn from '../components/WhatsOn'
 
 export default {
   name: 'home',
@@ -25,6 +37,8 @@ export default {
     Firebase.auth().onAuthStateChanged(user => {
       if (user){
         this.user = user.email
+      } else {
+        this.$router.push('/login')
       }
     })
     db.collection('users')
@@ -39,6 +53,8 @@ export default {
   components: {
     Navigation,
     FontAwesomeIcon,
+    OnlineUsers,
+    WhatsOn
   },
 }
 </script>
