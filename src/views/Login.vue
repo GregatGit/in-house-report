@@ -61,7 +61,6 @@ export default {
         email: this.email,
         password: this.password,
       }
-      console.table('info')
       Firebase.auth().signInWithEmailAndPassword(info.email, info.password).then(
         () => {
           this.$router.push('/home')
