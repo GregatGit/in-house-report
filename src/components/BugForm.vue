@@ -1,16 +1,18 @@
 <template>
   <div>
+    <h3 class="text-center">SEND IN A BUG</h3>
     <div class="form-group row">
-      <label for="inputTitle" class="col-sm-2 col-form-label">title </label>
+      <label for="inputTitle" class="col-sm-2 col-form-label">title</label>
       <div class="col-sm-10">
         <input type="text" class="form-control" id="inputTitle" placeholder="title" v-model="title" />
       </div>
-    </div>(tick applickable)
+    </div>
+    <p class="text-center">(tick applickable)</p>
     <div class="form-group" v-for="skill in skills" :key="skill">
       <div class="form-group row">
         <div class="col-sm-2">{{skill}}</div>
         <div class="col-sm-10">
-          <div class="form-check radio-inline">
+          <div class="form-check radio-inline float-right">
             <input
               class="form-check-input"
               v-model="checkedSkills"
@@ -50,47 +52,18 @@
         rows="3"
       ></textarea>
     </div>
-    <button @click="handleSubmit" class="btn btn-primary mb-5 mr-2">Submit</button> <button @click="closeBugReport" class="btn btn-outline-warning mb-5 ml-2">Cancel</button>
+    <div class="text-center">
+      <button @click="handleSubmit" class="btn btn-primary mb-5 mr-2">Submit</button>
+      <button class="btn btn-outline-warning mb-5 ml-2">Cancel</button>
+    </div>
   </div>
 </template>
 
 <script>
+import db from '../db'
+import Firebase from 'firebase'
 export default {
   name: 'BugForm',
-  props: ['localUser', 'closeBugReport'],
-  methods: {
-    handleSubmit: function() {
-      let newTitle = this.title.trim()
-      let newDescription = this.description.trim()
-      if (newTitle === '' || newDescription === '') {
-        console.log('no data')
-        return
-      }
-      const currentTime = new Date()
-      
-      const report = {
-        by: this.localUser,
-        title: newTitle,
-        description: newDescription,
-        skills: [...this.checkedSkills],
-        difficulty: this.difficulty,
-        time: {
-          hours: currentTime.getHours(),
-          minutes: currentTime.getMinutes(),
-          date: currentTime.toDateString()
-
-        },
-        fixed: false,
-        emergency: false
-      }
-      this.$store.dispatch('createReport', report)
-      this.title = ''
-      this.description = ''
-      this.difficulty = 1,
-      this.checkedSkills.length = 0,
-      this.closeBugReport()
-    },
-  },
   data() {
     return {
       skills: [
@@ -108,8 +81,43 @@ export default {
       difficulty: 1,
       description: '',
       title: '',
-      error: null
+      error: null,
     }
+  },
+  methods: {
+    handleSubmit: function() {
+      let newTitle = this.title.trim()
+      let newDescription = this.description.trim()
+      if (newTitle === '' || newDescription === '') {
+        console.log('no data')
+        return
+      }
+      const currentTime = new Date()
+
+      const report = {
+        by: 'G-Man',
+        title: newTitle,
+        description: newDescription,
+        skills: [...this.checkedSkills],
+        difficulty: this.difficulty,
+        time: {
+          hours: currentTime.getHours(),
+          minutes: currentTime.getMinutes(),
+          date: currentTime.toDateString(),
+        },
+        fixed: false,
+        emergency: false,
+      }
+
+      db.collection('bugs')
+        .add(report)
+        .then(function(docRef) {
+          console.log('Document written with ID: ', docRef.id)
+        })
+        .catch(function(error) {
+          console.error('Error adding document: ', error)
+        })
+    },
   },
 }
 </script>
