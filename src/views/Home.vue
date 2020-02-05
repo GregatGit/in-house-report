@@ -7,7 +7,7 @@
           <OnlineUsers :users="users" />
         </div>
         <div class="col-7">
-          <BugForm />
+          <BugForm :user="user" />
         </div>
         <div class="col-3">
           <WhatsOn />

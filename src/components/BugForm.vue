@@ -64,6 +64,7 @@ import db from '../db'
 import Firebase from 'firebase'
 export default {
   name: 'BugForm',
+  props: ['user'],
   data() {
     return {
       skills: [
@@ -95,7 +96,7 @@ export default {
       const currentTime = new Date()
 
       const report = {
-        by: 'G-Man',
+        by: this.user,
         title: newTitle,
         description: newDescription,
         skills: [...this.checkedSkills],
