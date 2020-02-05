@@ -1,13 +1,17 @@
 <template>
   <div>
-    <Navigation :user="user" />
+    <Navigation :user="user" @open="openBugForm" />
     <div class="container-fluid">
       <div class="row">
         <div class="col-2">
           <OnlineUsers :users="users" />
         </div>
         <div class="col-7">
-          <BugForm :user="user" />
+          <BugForm 
+            :user="user" 
+            v-if="showBugForm" 
+            @close="closeBugForm"  
+          />
         </div>
         <div class="col-3">
           <WhatsOn />
@@ -36,7 +40,19 @@ export default {
     return {
       user: null,
       users: [],
-      userEmail: null
+      userEmail: null,
+      showReadReport: false,
+      showBugForm: false
+    }
+  },
+  methods: {
+    closeBugForm: function(){
+      this.showBugForm = false
+    },
+    openBugForm: function() {
+      this.showBugForm = true
+      this.showReadReport = false
+      console.log('hi')
     }
   },
   mounted() {

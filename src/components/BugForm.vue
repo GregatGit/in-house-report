@@ -54,7 +54,7 @@
     </div>
     <div class="text-center">
       <button @click="handleSubmit" class="btn btn-primary mb-5 mr-2">Submit</button>
-      <button class="btn btn-outline-warning mb-5 ml-2">Cancel</button>
+      <button class="btn btn-outline-warning mb-5 ml-2" @click="$emit('close')" >Cancel</button>
     </div>
   </div>
 </template>
