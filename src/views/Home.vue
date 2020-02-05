@@ -6,7 +6,9 @@
         <div class="col-2">
           <OnlineUsers :users="users" />
         </div>
-        <div class="col-7"></div>
+        <div class="col-7">
+          <BugForm />
+        </div>
         <div class="col-3">
           <WhatsOn />
         </div>
@@ -24,6 +26,7 @@ import db from '../db'
 import Navigation from  '../components/Navigation'
 import OnlineUsers from '../components/OnlineUsers'
 import WhatsOn from '../components/WhatsOn'
+import BugForm from '../components/BugForm'
 
 export default {
   name: 'home',
@@ -54,7 +57,8 @@ export default {
     Navigation,
     FontAwesomeIcon,
     OnlineUsers,
-    WhatsOn
+    WhatsOn,
+    BugForm
   },
 }
 </script>
