@@ -9,7 +9,7 @@
         data-toggle="tooltip"
         data-placement="top"
         :title="bug.description"
-        @click="seeSelectedReport(index)"
+        @click="handleClick(index)"
       >
         <u class="mr-2">{{bug.title.toUpperCase()}}</u>
         <template v-for="skill in bug.skills">🔹 {{skill}} </template>
@@ -23,10 +23,10 @@ import { mapState } from 'vuex'
 import db from '../db'
 export default {
   name: 'WhatsOn',
-  props: ['seeSelectedReport'],
-  data () {
-    return {
-      bugs: []
+  props: ['bugs'],
+  methods: {
+    handleClick: function(index){
+      this.$emit('readReport', index)
     }
   },
   // computed: {
@@ -36,18 +36,18 @@ export default {
   //   this.$store.dispatch('loadReports')
   // },
   created() {
-    db.collection('bugs').onSnapshot(res => {
-      const changes = res.docChanges()
+    // db.collection('bugs').onSnapshot(res => {
+    //   const changes = res.docChanges()
 
-      changes.forEach(change => {
-        if (change.type === 'added'){
-          this.bugs.push({
-            id: change.doc.id,
-            ...change.doc.data()
-          })
-        }
-      })
-    })
+    //   changes.forEach(change => {
+    //     if (change.type === 'added'){
+    //       this.bugs.push({
+    //         id: change.doc.id,
+    //         ...change.doc.data()
+    //       })
+    //     }
+    //   })
+    // })
   }
 }
 </script>

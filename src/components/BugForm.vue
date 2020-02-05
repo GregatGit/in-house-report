@@ -112,13 +112,14 @@ export default {
 
       db.collection('bugs')
         .add(report)
-        .then(function(docRef) {
+        .then(docRef => {
           console.log('Document written with ID: ', docRef.id)
+          this.$emit('close')
         })
-        .catch(function(error) {
+        .catch(error => {
           console.error('Error adding document: ', error)
         })
-    },
+    }
   },
 }
 </script>

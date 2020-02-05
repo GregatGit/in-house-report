@@ -12,9 +12,17 @@
             v-if="showBugForm" 
             @close="closeBugForm"  
           />
+          <ReadReport 
+            v-if="showReadReport"
+            :report="bugs[readIndex]"
+            @closeReport="closeReport"
+          />
         </div>
         <div class="col-3">
-          <WhatsOn />
+          <WhatsOn 
+            :bugs="bugs" 
+            @readReport="readReport" 
+          />
         </div>
       </div>
     </div>
@@ -31,6 +39,7 @@ import Navigation from  '../components/Navigation'
 import OnlineUsers from '../components/OnlineUsers'
 import WhatsOn from '../components/WhatsOn'
 import BugForm from '../components/BugForm'
+import ReadReport from '../components/ReadReport'
 
 import { findUserName } from '../helpers'
 
@@ -42,7 +51,9 @@ export default {
       users: [],
       userEmail: null,
       showReadReport: false,
-      showBugForm: false
+      showBugForm: false,
+      readIndex: null,
+      bugs: []
     }
   },
   methods: {
@@ -51,6 +62,14 @@ export default {
     },
     openBugForm: function() {
       this.showBugForm = true
+      this.showReadReport = false
+    },
+    readReport: function(index){
+      this.readIndex = index
+      this.showBugForm = false
+      this.showReadReport = true
+    },
+    closeReport: function(){
       this.showReadReport = false
     }
   },
@@ -62,6 +81,7 @@ export default {
         this.$router.push('/login')
       }
     })
+
     db.collection('users')
       .get()
       .then(querySnapshot => {
@@ -70,13 +90,27 @@ export default {
         })
         this.user = findUserName(this.userEmail,this.users)
       })
+
+    db.collection('bugs').onSnapshot(res => {
+      const changes = res.docChanges()
+
+      changes.forEach(change => {
+        if (change.type === 'added'){
+          this.bugs.push({
+            id: change.doc.id,
+            ...change.doc.data()
+          })
+        }
+      })
+    })
   },
   components: {
     Navigation,
     FontAwesomeIcon,
     OnlineUsers,
     WhatsOn,
-    BugForm
+    BugForm,
+    ReadReport
   },
 }
 </script>
