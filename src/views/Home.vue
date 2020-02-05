@@ -52,7 +52,6 @@ export default {
     openBugForm: function() {
       this.showBugForm = true
       this.showReadReport = false
-      console.log('hi')
     }
   },
   mounted() {
