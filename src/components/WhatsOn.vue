@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>Bug List</h3>
+    <h3 class="text-center">Bug List</h3>
     <ul class="list-group anyScroll">
       <li
         class="list-group-item list-group-item-action btn"
@@ -11,8 +11,8 @@
         :title="bug.description"
         @click="seeSelectedReport(index)"
       >
-        {{bug.title.toUpperCase()}}
-        <template v-for="skill in bug.skills">🔹 {{skill}}</template>
+        <u class="mr-2">{{bug.title.toUpperCase()}}</u>
+        <template v-for="skill in bug.skills">🔹 {{skill}} </template>
       </li>
     </ul>
   </div>
@@ -35,15 +35,19 @@ export default {
   // created() {
   //   this.$store.dispatch('loadReports')
   // },
-  mounted() {
-    db.collection('bugs')
-      .get()
-      .then(querySnapshot => {
-        querySnapshot.forEach(doc => {
-          //console.log(`${doc.id} => ${doc.data().name}`)
-          this.bugs.push(doc.data())
-        })
+  created() {
+    db.collection('bugs').onSnapshot(res => {
+      const changes = res.docChanges()
+
+      changes.forEach(change => {
+        if (change.type === 'added'){
+          this.bugs.push({
+            id: change.doc.id,
+            ...change.doc.data()
+          })
+        }
       })
+    })
   }
 }
 </script>
