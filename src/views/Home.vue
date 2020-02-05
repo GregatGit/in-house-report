@@ -28,18 +28,21 @@ import OnlineUsers from '../components/OnlineUsers'
 import WhatsOn from '../components/WhatsOn'
 import BugForm from '../components/BugForm'
 
+import { findUserName } from '../helpers'
+
 export default {
   name: 'home',
   data: function() {
     return {
       user: null,
       users: [],
+      userEmail: null
     }
   },
   mounted() {
     Firebase.auth().onAuthStateChanged(user => {
       if (user){
-        this.user = user.email
+        this.userEmail = user.email
       } else {
         this.$router.push('/login')
       }
@@ -48,9 +51,9 @@ export default {
       .get()
       .then(querySnapshot => {
         querySnapshot.forEach(doc => {
-          //console.log(`${doc.id} => ${doc.data().name}`)
           this.users.push(doc.data())
         })
+        this.user = findUserName(this.userEmail,this.users)
       })
   },
   components: {
