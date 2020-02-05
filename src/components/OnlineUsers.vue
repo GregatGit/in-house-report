@@ -19,9 +19,9 @@
 export default {
   name: 'OnlineUsers',
   props: ['users'],
-  created() {
-    this.$store.dispatch('getUsers')
-  }
+  // created() {
+  //   this.$store.dispatch('getUsers')
+  // }
 }
 </script>
 
