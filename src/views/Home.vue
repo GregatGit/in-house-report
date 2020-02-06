@@ -74,7 +74,6 @@ export default {
       this.showReadReport = true
     },
     closeReport: function(){
-      console.log('boom')
       this.showReadReport = false
       this.readIndex = null
     }
