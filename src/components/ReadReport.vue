@@ -5,15 +5,15 @@
     </h3>
 
     <div class="list-group-item">
-      <span>By: </span>
+      <span><b>By: </b></span>
       <span> {{report.by}}</span>
     </div>
     <div class="list-group-item">
-      <span>Date issued:</span>
+      <span><b>Date issued:  </b> </span>
       <span>{{report.time.date}} {{report.time.hours}}:{{report.time.minutes}}</span>
     </div>
     <div class="list-group-item">
-      <span>Difficulty level:</span>
+      <span><b>Difficulty level:  </b></span>
       <span>{{report.difficulty}}</span>
     </div>
     <div class="list-group-item">
