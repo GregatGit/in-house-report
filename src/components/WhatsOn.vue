@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3 class="text-center">Bug List</h3>
+    <h3 class="text-center">Bug List {{bugs.length}}</h3>
     <ul class="list-group anyScroll">
       <li
         class="list-group-item list-group-item-action btn"
