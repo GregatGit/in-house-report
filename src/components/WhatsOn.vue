@@ -9,9 +9,9 @@
         data-toggle="tooltip"
         data-placement="top"
         :title="bug.description"
-        @click="handleClick(index)"
+        @click="$emit('readReport', index)"
       >
-        <u class="mr-2">{{bug.title.toUpperCase()}}</u>
+        <p><u class="mr-2">{{bug.title.toUpperCase()}}</u></p>
         <template v-for="skill in bug.skills">🔹 {{skill}} </template>
       </li>
     </ul>
@@ -24,11 +24,6 @@ import db from '../db'
 export default {
   name: 'WhatsOn',
   props: ['bugs'],
-  methods: {
-    handleClick: function(index){
-      this.$emit('readReport', index)
-    }
-  },
   // computed: {
   //   ...mapState(['bugs']),
   // },

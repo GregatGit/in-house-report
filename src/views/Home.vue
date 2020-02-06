@@ -65,12 +65,18 @@ export default {
       this.showReadReport = false
     },
     readReport: function(index){
+      if(index === this.readIndex) return // already showing
+      if(index !== null){ // make sure everything is reset
+        this.closeReport()
+      }
       this.readIndex = index
       this.showBugForm = false
       this.showReadReport = true
     },
     closeReport: function(){
+      console.log('boom')
       this.showReadReport = false
+      this.readIndex = null
     }
   },
   mounted() {

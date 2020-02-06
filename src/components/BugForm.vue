@@ -108,6 +108,7 @@ export default {
         },
         fixed: false,
         emergency: false,
+        comments: []
       }
 
       db.collection('bugs')
