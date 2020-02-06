@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>
+    <h3 class="text-center">
       <u>{{report.title}}</u>
     </h3>
 
