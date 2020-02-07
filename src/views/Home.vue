@@ -97,14 +97,15 @@ export default {
       })
 
     db.collection('bugs').onSnapshot(res => {
-      const changes = res.docChanges()
-
-      changes.forEach(change => {
-        if (change.type === 'added'){
-          this.bugs.push({
-            id: change.doc.id,
-            ...change.doc.data()
-          })
+      const newBugs = []
+      res.forEach(doc => {
+        newBugs.push(doc.data())
+      })
+      this.bugs = newBugs.sort((a, b) => {
+        if (a.title.toLowerCase() < b.title.toLowerCase()){
+          return -1
+        } else {
+          return 1
         }
       })
     })
