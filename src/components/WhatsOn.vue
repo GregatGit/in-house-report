@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3 class="text-center">Bug List <small class="text-danger">({{bugs.length}})</small></h3>
+    <h3 data-toggle="tooltip" data-placement="left" title="click on report" class="text-center">Bug List <small class="text-danger">({{bugs.length}})</small></h3>
     <ul class="list-group anyScroll">
       <li
         class="list-group-item list-group-item-action btn"
