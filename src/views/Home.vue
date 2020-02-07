@@ -16,6 +16,7 @@
             v-if="showReadReport"
             :report="bugs[readIndex]"
             @closeReport="closeReport"
+            @deleteDoc="deleteDoc"
           />
         </div>
         <div class="col-3">
@@ -57,6 +58,15 @@ export default {
     }
   },
   methods: {
+    deleteDoc: function(docId){
+      this.closeReport()
+      db.collection('bugs')
+        .doc(docId)
+        .delete()
+        .then(() => {
+          console.log('deleted')
+        })
+    },
     closeBugForm: function(){
       this.showBugForm = false
     },
@@ -65,7 +75,7 @@ export default {
       this.showReadReport = false
     },
     readReport: function(index){
-      if(index === this.readIndex) return // already showing
+      
       if(index !== null){ // make sure everything is reset
         this.closeReport()
       }
@@ -99,7 +109,7 @@ export default {
     db.collection('bugs').onSnapshot(res => {
       const newBugs = []
       res.forEach(doc => {
-        newBugs.push(doc.data())
+        newBugs.push({id: doc.id, ...doc.data()})
       })
       this.bugs = newBugs.sort((a, b) => {
         if (a.title.toLowerCase() < b.title.toLowerCase()){
