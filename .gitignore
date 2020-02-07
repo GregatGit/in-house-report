@@ -2,6 +2,7 @@
 node_modules
 /dist
 src/db.js
+firestore.rules
 
 # local env files
 .env.local
