@@ -4,7 +4,7 @@
     <div class="form-group row">
       <label for="inputTitle" class="col-sm-2 col-form-label">title</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="inputTitle" placeholder="title" v-model="title" />
+        <input type="text" class="form-control" id="inputTitle" placeholder="title (required)" required v-model="title" />
       </div>
     </div>
     <p class="text-center">(tick applickable)</p>
@@ -45,7 +45,8 @@
     </div>
     <div class="form-group">
       <textarea
-        placeholder="What's the issue?"
+        required
+        placeholder="What's the issue? (required)"
         class="form-control"
         v-model="description"
         id="description"
