@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="myHome">
     <Navigation :user="user" @open="openBugForm" />
-    <div class="container-fluid">
+    <div class="container-fluid mt-2">
       <div class="row">
         <div class="col-2">
           <OnlineUsers :users="users" />
@@ -119,3 +119,14 @@ export default {
   },
 }
 </script>
+<style lang="scss">
+@import 'node_modules/bootstrap/scss/bootstrap';
+.myHome {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  background: linear-gradient(to right, rgb(218, 213, 212), rgb(238, 241, 243));
+}
+</style>
