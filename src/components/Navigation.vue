@@ -4,7 +4,8 @@
       <div class="container-fluid">
         <router-link class="navbar-brand" to="/home">Welcome: {{user}}</router-link>
         <div class="navbar-nav ml-auto">
-          <button class="btn nav-item nav-link" @click="$emit('open')" >LOG BUG</button>
+          <button class="btn nav-item nav-link" @click="$emit('open')" >CREATE REPORT</button>
+          <button class="btn nav-item nav-link disabled" disabled>|</button>
           <button @click="handleLogout" class="btn nav-item nav-link">LOGOUT</button>
         </div>
       </div>
