@@ -1,7 +1,7 @@
 <template>
   <div class="myHome">
     <Navigation :user="user" @open="openBugForm" />
-    <div class="container-fluid mt-2">
+    <div class="container-fluid mt-2 pt-3">
       <div class="row">
         <div class="col-2">
           <OnlineUsers :users="users" />
@@ -27,6 +27,7 @@
         </div>
       </div>
     </div>
+    <Footer />
   </div>
 </template>
 
@@ -41,6 +42,7 @@ import OnlineUsers from '../components/OnlineUsers'
 import WhatsOn from '../components/WhatsOn'
 import BugForm from '../components/BugForm'
 import ReadReport from '../components/ReadReport'
+import Footer from '../components/Footer'
 
 import { findUserName } from '../helpers'
 
@@ -126,12 +128,16 @@ export default {
     OnlineUsers,
     WhatsOn,
     BugForm,
-    ReadReport
+    ReadReport,
+    Footer
   },
 }
 </script>
 <style lang="scss">
 @import 'node_modules/bootstrap/scss/bootstrap';
+body{
+  padding-top: 50px;
+}
 .myHome {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
