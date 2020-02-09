@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>Team Members</h3>
+    <h3>Members</h3>
     <template v-for="user in users">
       <p 
         :key="user.name"
