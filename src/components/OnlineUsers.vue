@@ -1,14 +1,13 @@
 <template>
   <div>
-    <h3>Online</h3>
+    <h3>Team Members</h3>
     <template v-for="user in users">
-      <p v-if="user.online" :key="user.name">
-        {{ user.name }}
-      </p>
-    </template>
-    <h4>Offline</h4>
-    <template v-for="user in users">
-      <p v-if="!user.online" :key="user.name">
+      <p 
+        :key="user.name"
+        data-toggle="tooltip"
+        data-placement="top"
+        :title="user.skills"
+      >
         {{ user.name }}
       </p>
     </template>
