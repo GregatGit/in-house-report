@@ -1,5 +1,5 @@
 <template>
-  <div :key="report.id">
+  <form @click.prevent="handleSubmit" :key="report.id">
     <h3 class="text-center">
       <u>{{report.title}}</u>
     </h3>
@@ -50,21 +50,24 @@
         <span>{{comment.comment}}</span>
       </div>
     </template>
-    <div class="list-group-item">
+    <div class="list-group-item ">
       <span>
-        <input v-model="newComment" type="textarea" maxlength="250" />
+        <textarea class="form-control" v-model="newComment" rows="3" maxlength="250" />
       </span>
       <span class="float-right">
-        <button v-if="!sending" class="btn btn-primary">
-          <font-awesome-icon icon="plus" name="plus" @click="addComment" />
+        
+      </span>
+    </div>
+    <div class="list-group-item">
+      <button v-if="!sending" type="submit" class="btn btn-primary btn-block">
+          ADD COMMENT
         </button>
         <button v-if="sending" class="btn btn-primary">
           <font-awesome-icon class="fa-spin" icon="hourglass-end" name="plus" />
         </button>
-      </span>
     </div>
     <button @click="$emit('closeReport')" class="btn btn-outline-success mt-3">CLOSE</button>
-  </div>
+  </form>
 </template>
 
 <script>
@@ -84,14 +87,15 @@ export default {
     }
   },
   methods: {
-    addComment: function() {
-      if (this.newComment === '') {
+    handleSubmit: function() {
+      if (this.newComment.trim() === '') {
         console.log('no comment to add')
         return
       }
       console.log('here')
 
       const commentDB = {
+        index: this.comments.length,
         by: this.user,
         comment: this.newComment,
         stars: 0,
@@ -130,7 +134,9 @@ export default {
         res.forEach(doc => {
           newComments.push({id: doc.id, ...doc.data()})
         })
-        this.comments = newComments
+        this.comments = newComments.sort((a, b) => {
+          return a.index < b.index ? -1 : 1
+        })
       })
   },
   components: {
