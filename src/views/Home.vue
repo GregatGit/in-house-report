@@ -7,23 +7,20 @@
           <OnlineUsers :users="users" />
         </div>
         <div class="col-7">
-          <BugForm 
-            :user="user" 
-            v-if="showBugForm" 
-            @close="closeBugForm"  
-          />
-          <ReadReport 
+          <BugForm :user="user" v-if="showBugForm" @close="closeBugForm" />
+          <ReadReport
             v-if="showReadReport"
+            :user="user"
             :report="bugs[readIndex]"
             @closeReport="closeReport"
             @deleteDoc="deleteDoc"
           />
         </div>
         <div class="col-3">
-          <WhatsOn 
-            :bugs="bugs" 
+          <WhatsOn
+            :bugs="bugs"
             :readIndex="readIndex"
-            @readReport="readReport" 
+            @readReport="readReport"
             @closeReport="closeReport"
           />
         </div>
@@ -39,7 +36,7 @@ import Firebase from 'firebase'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 import db from '../db'
-import Navigation from  '../components/Navigation'
+import Navigation from '../components/Navigation'
 import OnlineUsers from '../components/OnlineUsers'
 import WhatsOn from '../components/WhatsOn'
 import BugForm from '../components/BugForm'
@@ -58,11 +55,11 @@ export default {
       showReadReport: false,
       showBugForm: false,
       readIndex: null,
-      bugs: []
+      bugs: [],
     }
   },
   methods: {
-    deleteDoc: function(docId){
+    deleteDoc: function(docId) {
       this.closeReport()
       db.collection('bugs')
         .doc(docId)
@@ -71,30 +68,30 @@ export default {
           console.log('deleted')
         })
     },
-    closeBugForm: function(){
+    closeBugForm: function() {
       this.showBugForm = false
     },
     openBugForm: function() {
       this.showBugForm = true
       this.showReadReport = false
     },
-    readReport: function(index){
-      
-      if(index !== null){ // make sure everything is reset
+    readReport: function(index) {
+      if (index !== null) {
+        // make sure everything is reset
         this.closeReport()
       }
       this.readIndex = index
       this.showBugForm = false
       this.showReadReport = true
     },
-    closeReport: function(){
+    closeReport: function() {
       this.showReadReport = false
       this.readIndex = null
-    }
+    },
   },
   mounted() {
     Firebase.auth().onAuthStateChanged(user => {
-      if (user){
+      if (user) {
         this.userEmail = user.email
       } else {
         this.$router.push('/login')
@@ -107,16 +104,16 @@ export default {
         querySnapshot.forEach(doc => {
           this.users.push(doc.data())
         })
-        this.user = findUserName(this.userEmail,this.users)
+        this.user = findUserName(this.userEmail, this.users)
       })
 
     db.collection('bugs').onSnapshot(res => {
       const newBugs = []
       res.forEach(doc => {
-        newBugs.push({id: doc.id, ...doc.data()})
+        newBugs.push({ id: doc.id, ...doc.data() })
       })
       this.bugs = newBugs.sort((a, b) => {
-        if (a.title.toLowerCase() < b.title.toLowerCase()){
+        if (a.title.toLowerCase() < b.title.toLowerCase()) {
           return -1
         } else {
           return 1
@@ -131,13 +128,13 @@ export default {
     WhatsOn,
     BugForm,
     ReadReport,
-    Footer
+    Footer,
   },
 }
 </script>
 <style lang="scss">
 @import 'node_modules/bootstrap/scss/bootstrap';
-body{
+body {
   padding-top: 50px;
 }
 .myHome {
