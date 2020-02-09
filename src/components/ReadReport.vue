@@ -5,19 +5,19 @@
     </h3>
 
     <div class="list-group-item">
-      <span>
+      <span class="float-left">
         <b>By:</b>
       </span>
       <span>{{report.by}}</span>
     </div>
     <div class="list-group-item">
-      <span>
+      <span class="float-left">
         <b>Date issued:</b>
       </span>
       <span>{{report.time.date}} {{report.time.hours}}:{{report.time.minutes}}</span>
     </div>
     <div class="list-group-item">
-      <span>
+      <span class="float-left">
         <b>Difficulty level:</b>
       </span>
       <span>{{report.difficulty}}</span>
@@ -52,7 +52,7 @@
     </template>
     <div class="list-group-item ">
       <span>
-        <textarea class="form-control" v-model="newComment" rows="3" maxlength="250" />
+        <textarea class="form-control" v-model="newComment" rows="3" maxlength="250" placeholder="...type new comment..." />
       </span>
       <span class="float-right">
         
@@ -119,7 +119,7 @@ export default {
     showDeleteButton: function() {
       this.showDelete = !this.showDelete
       if (this.showDelete) {
-        this.message = 'Cancel Del'
+        this.message = 'Cancel Delete'
       } else {
         this.message = 'Delete'
       }
