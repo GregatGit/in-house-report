@@ -60,13 +60,15 @@
     </div>
     <div class="list-group-item">
       <button v-if="!sending" type="submit" class="btn btn-primary btn-block">
-          ADD COMMENT
+          POST COMMENT
         </button>
         <button v-if="sending" class="btn btn-primary">
           <font-awesome-icon class="fa-spin" icon="hourglass-end" name="plus" />
         </button>
     </div>
-    <button @click="$emit('closeReport')" class="btn btn-outline-success mt-3">CLOSE</button>
+    <div class="list-group-item">
+        <button @click="$emit('closeReport')" class="btn btn-outline-success btn-block">CLOSE</button>
+    </div>
   </form>
 </template>
 
