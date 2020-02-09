@@ -22,7 +22,9 @@
         <div class="col-3">
           <WhatsOn 
             :bugs="bugs" 
+            :readIndex="readIndex"
             @readReport="readReport" 
+            @closeReport="closeReport"
           />
         </div>
       </div>

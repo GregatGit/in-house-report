@@ -9,7 +9,7 @@
         data-toggle="tooltip"
         data-placement="top"
         :title="bug.description"
-        @click="$emit('readReport', index)"
+        @click="handleClick(index)"
       >
         <p><u class="mr-2">{{bug.title.toUpperCase()}}</u></p>
         <template v-for="skill in bug.skills">🔹 {{skill}} </template>
@@ -23,7 +23,21 @@ import { mapState } from 'vuex'
 import db from '../db'
 export default {
   name: 'WhatsOn',
-  props: ['bugs'],
+  props: ['bugs', 'readIndex'],
+  methods: {
+    handleClick: function(index){  
+      if (this.readIndex !== null){
+        if (this.readIndex === index){
+          console.log('already done')
+          return
+        }
+      } 
+      this.$emit('closeReport')
+      setTimeout(() => {
+        this.$emit('readReport', index)
+      }, 1)
+    }
+  },
   // computed: {
   //   ...mapState(['bugs']),
   // },
