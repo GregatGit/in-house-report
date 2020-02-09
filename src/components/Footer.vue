@@ -1,7 +1,7 @@
 <template>
   <footer  class="py-4 text-white-50 myFooter ">
     <div class="container text-center ">
-      <small>build by gregdd@outlook.com using vue | vuex | boostrap | icons by fontawesome &copy; </small>      
+      <small>build by gregdd@outlook.com using vue | boostrap | icons by fontawesome &copy; </small>      
     </div>
   </footer>
 </template>
