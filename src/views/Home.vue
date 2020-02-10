@@ -112,12 +112,8 @@ export default {
       res.forEach(doc => {
         newBugs.push({ id: doc.id, ...doc.data() })
       })
-      this.bugs = newBugs.sort((a, b) => {
-        if (a.title.toLowerCase() < b.title.toLowerCase()) {
-          return -1
-        } else {
-          return 1
-        }
+      this.bugs = newBugs.sort((a, b) => { 
+        return b.timestamp - a.timestamp
       })
     })
   },
