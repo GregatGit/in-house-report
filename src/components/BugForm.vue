@@ -62,7 +62,7 @@
 
 <script>
 import db from '../db'
-import Firebase from 'firebase'
+
 export default {
   name: 'BugForm',
   props: ['user'],
@@ -109,13 +109,13 @@ export default {
         },
         fixed: false,
         emergency: false,
-        time2: Firebase.firestore.FieldValue.serverTimestamp()
+        timestamp: Date.now()
       }
 
       db.collection('bugs')
         .add(report)
         .then(docRef => {
-          console.log('Document written with ID: ', docRef.id)
+          //console.log('Document written with ID: ', docRef.id)
           this.$emit('close')
         })
         .catch(error => {
