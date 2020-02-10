@@ -109,6 +109,7 @@ export default {
         },
         fixed: false,
         emergency: false,
+        time2: Firebase.firestore.FieldValue.serverTimestamp()
       }
 
       db.collection('bugs')
