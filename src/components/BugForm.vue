@@ -88,11 +88,6 @@ export default {
   },
   methods: {
     handleSubmit: function() {
-      if(this.guest){
-        this.$emit('stopGuest')
-        this.$emit('close')
-        return
-      }
       let newTitle = this.title.trim()
       let newDescription = this.description.trim()
       if (newTitle === '' || newDescription === '') {

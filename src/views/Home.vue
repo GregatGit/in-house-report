@@ -11,8 +11,7 @@
             :user="user" 
             :guest="guest" 
             v-if="showBugForm" 
-            @close="closeBugForm"
-            @stopGuest="stopGuest" 
+            @close="closeBugForm" 
           />
           <ReadReport
             v-if="showReadReport"
@@ -67,9 +66,6 @@ export default {
     }
   },
   methods: {
-    stopGuest: function(){
-      console.log('sorry you are guest')
-    },
     deleteDoc: function(docId) {
       this.closeReport()
       db.collection('bugs')
