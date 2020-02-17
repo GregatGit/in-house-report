@@ -35,6 +35,7 @@
                     data-toggle="tooltip"
                     data-placement="top"
                     title="read permissions only"
+                    @click="guestLogin"
                   >Log in as Guest</button>
                 </div>
               </div>
@@ -63,16 +64,14 @@ export default {
   },
   methods: {
     guestLogin: function(){
-      this.login(true)
+      this.email = 'guest@test.com',
+      this.password = 'guest123'
+      this.login()
     },
-    login: function(guest = false) {
+    login: function() {
       const info = {
         email: this.email,
         password: this.password,
-      }
-      if (guest){
-        info.email = 'guest@test.com'
-        info.password = 'guest123'
       }
       Firebase.auth().signInWithEmailAndPassword(info.email, info.password).then(
         () => {
