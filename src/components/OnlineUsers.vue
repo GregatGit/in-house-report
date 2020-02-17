@@ -3,6 +3,7 @@
     <h3>Members</h3>
     <template v-for="user in users">
       <p 
+        v-if="user.name != 'Guest'"
         :key="user.name"
         data-toggle="tooltip"
         data-placement="top"
