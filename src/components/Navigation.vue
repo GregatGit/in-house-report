@@ -2,7 +2,10 @@
   <div>
     <nav class="navbar navbar-default navbar-expand bg-primary navbar-dark">
       <div class="container-fluid">
-        <router-link class="navbar-brand" to="/home">Welcome: {{user}}</router-link>
+        <router-link class="navbar-brand" to="/home">
+          Welcome: {{user}}
+          <span v-if="user == 'Guest'" class="message" > {{message}}</span>
+        </router-link>
         <div class="navbar-nav ml-auto">
           <button class="btn nav-item nav-link" @click="$emit('open')">CREATE REPORT</button>
           <button class="btn nav-item nav-link disabled" disabled>|</button>
@@ -18,6 +21,11 @@ import Firebase from 'firebase'
 export default {
   name: 'navigation',
   props: ['user'],
+  data: function () {
+    return {
+      message: '(you can not create or delete reports)'
+    }
+  },
   methods: {
     handleLogout: function() {
       Firebase.auth()
@@ -40,5 +48,8 @@ nav {
   width: 100vw; /* take up the full browser width */
   z-index: 200; /* high z index so other content scrolls underneath */
   height: 60px;
+}
+.message{
+  font-size: .8rem;
 }
 </style>
