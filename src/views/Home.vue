@@ -7,10 +7,17 @@
           <OnlineUsers :users="users" />
         </div>
         <div class="col-7">
-          <BugForm :user="user" v-if="showBugForm" @close="closeBugForm" />
+          <BugForm 
+            :user="user" 
+            :guest="guest" 
+            v-if="showBugForm" 
+            @close="closeBugForm"
+            @stopGuest="stopGuest" 
+          />
           <ReadReport
             v-if="showReadReport"
             :user="user"
+            :guest="guest"
             :report="bugs[readIndex]"
             @closeReport="closeReport"
             @deleteDoc="deleteDoc"
@@ -56,9 +63,13 @@ export default {
       showBugForm: false,
       readIndex: null,
       bugs: [],
+      guest: false
     }
   },
   methods: {
+    stopGuest: function(){
+      console.log('sorry you are guest')
+    },
     deleteDoc: function(docId) {
       this.closeReport()
       db.collection('bugs')
@@ -74,6 +85,7 @@ export default {
     openBugForm: function() {
       this.showBugForm = true
       this.showReadReport = false
+      this.readIndex = null
     },
     readReport: function(index) {
       if (index !== null) {
@@ -105,6 +117,9 @@ export default {
           this.users.push(doc.data())
         })
         this.user = findUserName(this.userEmail, this.users)
+        if(this.user === 'Guest'){
+          this.guest = true
+        }
       })
 
     db.collection('bugs').onSnapshot(res => {
