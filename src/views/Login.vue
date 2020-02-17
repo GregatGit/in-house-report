@@ -45,8 +45,7 @@
       </div>
     </form>
     <p class="text-center mt-2">
-      or
-      <router-link to="/register">register</router-link>
+      <router-link to="/register">register | about</router-link>
     </p>
   </div>
 </template>
