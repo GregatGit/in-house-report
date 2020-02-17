@@ -11,7 +11,7 @@
                   <div v-if="error" class="col-12 alert alert-danger px-3">{{error}}</div>
                   <label class="form-control-label sr-only" for="Email">Email</label>
                   <input
-                    required
+ 
                     class="form-control"
                     type="email"
                     id="email"
@@ -21,7 +21,7 @@
                 </section>
                 <section class="form-group">
                   <input
-                    required
+
                     class="form-control"
                     type="password"
                     placeholder="Password"
@@ -29,7 +29,13 @@
                   />
                 </section>
                 <div class="form-group text-right mb-0">
-                  <button class="btn btn-primary" type="submit">Log in</button>
+                  <button class="btn btn-primary float-left" type="submit">Log in</button>
+                  <button 
+                    class="btn btn-primary float-right"
+                    data-toggle="tooltip"
+                    data-placement="top"
+                    title="read permissions only"
+                  >Log in as Guest</button>
                 </div>
               </div>
             </div>
@@ -56,10 +62,17 @@ export default {
     }
   },
   methods: {
-    login: function() {
+    guestLogin: function(){
+      this.login(true)
+    },
+    login: function(guest = false) {
       const info = {
         email: this.email,
         password: this.password,
+      }
+      if (guest){
+        info.email = 'guest@test.com'
+        info.password = 'guest123'
       }
       Firebase.auth().signInWithEmailAndPassword(info.email, info.password).then(
         () => {
