@@ -25,7 +25,7 @@
     <div class="list-group-item">
       <span>{{report.description}}</span>
     </div>
-    <div class="list-group-item pb-5">
+    <div v-if="!guest" class="list-group-item pb-5">
       <span class="float-left">
         <button class="btn btn-warning" @click="showDeleteButton">{{message}}</button>
       </span>
@@ -59,7 +59,7 @@
       </span>
     </div>
     <div class="list-group-item">
-      <button v-if="!sending" type="submit" class="btn btn-primary btn-block">
+      <button v-if="!sending && !guest" type="submit" class="btn btn-primary btn-block">
           POST COMMENT
         </button>
         <button v-if="sending" class="btn btn-primary">
@@ -78,7 +78,7 @@ import Firebase from 'firebase'
 import db from '../db'
 export default {
   name: 'ReadReport',
-  props: ['report', 'user'],
+  props: ['report', 'user', 'guest'],
   data: function() {
     return {
       showDelete: false,

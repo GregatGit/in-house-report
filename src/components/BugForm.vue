@@ -54,7 +54,7 @@
       ></textarea>
     </div>
     <div class="text-center">
-      <button @click="handleSubmit" class="btn btn-primary mb-5 mr-2">Submit</button>
+      <button v-if="!guest" @click="handleSubmit" class="btn btn-primary mb-5 mr-2">Submit</button>
       <button class="btn btn-outline-warning mb-5 ml-2" @click="$emit('close')" >Cancel</button>
     </div>
   </div>
@@ -65,7 +65,7 @@ import db from '../db'
 
 export default {
   name: 'BugForm',
-  props: ['user'],
+  props: ['user', 'guest'],
   data() {
     return {
       skills: [
@@ -88,6 +88,11 @@ export default {
   },
   methods: {
     handleSubmit: function() {
+      if(this.guest){
+        this.$emit('stopGuest')
+        this.$emit('close')
+        return
+      }
       let newTitle = this.title.trim()
       let newDescription = this.description.trim()
       if (newTitle === '' || newDescription === '') {
